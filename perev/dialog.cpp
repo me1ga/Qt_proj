@@ -145,6 +145,12 @@ void Dialog::cp_frob_clipboard()
         }
         clipboard->clear(QClipboard::Clipboard);
         clipboard->setText(string, QClipboard::Clipboard);
+        QString program = "notify-send";
+        QStringList arguments;
+        arguments << "--icon=gtk-info" << "Переворотчик" << "Текст перевёрнут!";
+        QProcess *myProcess = new QProcess(this);
+        myProcess->start(program, arguments);
+        myProcess->waitForFinished();
     }
 }
 
